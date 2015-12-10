@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "document.h"
 #import "html.h"
+#import "hoedown_html_patch.h"
 
 typedef NS_ENUM(NSUInteger, JKSMarkdownExtention) {
 	JKSMarkdownExtentionNoIntraEmphasis = HOEDOWN_EXT_NO_INTRA_EMPHASIS,
@@ -30,6 +31,9 @@ typedef NS_ENUM(NSUInteger, JKSMarkdownRenderOption) {
     JKSMarkdownRenderOptionHardWrap = HOEDOWN_HTML_HARD_WRAP,
     JKSMarkdownRenderOptionUseXHTML = HOEDOWN_HTML_USE_XHTML,
     JKSMarkdownRenderOptionEscape = HOEDOWN_HTML_ESCAPE,
+    JKSMarkdownRenderOptionUseTaskList = HOEDOWN_HTML_USE_TASK_LIST,
+    JKSMarkdownRenderOptionBlockCodeLineNumbers = HOEDOWN_HTML_BLOCKCODE_LINE_NUMBERS,
+    JKSMarkdownRenderOptionBlockCodeInformation = HOEDOWN_HTML_BLOCKCODE_INFORMATION,
 };
 
 @interface JKSMarkdownDocument : NSObject

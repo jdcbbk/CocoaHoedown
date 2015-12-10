@@ -9,6 +9,7 @@
 #import "JKSMarkdownDocument.h"
 #import "document.h"
 #import "html.h"
+#import "hoedown_html_patch.h"
 
 static const int kNestingLevel = 15;
 static const size_t kBufferUnit = 64;
@@ -43,7 +44,18 @@ static const size_t kBufferUnit = 64;
     }
 
     hoedown_renderer *renderer = hoedown_html_renderer_new((hoedown_html_flags)self.renderOptions, kNestingLevel);
+    renderer->blockcode = hoedown_patch_render_blockcode;
+    renderer->listitem = hoedown_patch_render_listitem;
+    hoedown_html_renderer_state_extra *extra =
+    hoedown_malloc(sizeof(hoedown_html_renderer_state_extra));
+    
+    ((hoedown_html_renderer_state *)renderer->opaque)->opaque = extra;
+
+    
     NSString *output = render(renderer, self);
+    
+
+    free(extra);
     hoedown_html_renderer_free(renderer);
 
     return output;
